@@ -52,12 +52,10 @@ module.exports = new Promise(function (resolve, reject) {
 		
 		resolve();
 		
+		// Fechar a janela de instalação
+		installWindow.close();
+		
 	}, 1000);
 	
-	
-}).then(function(){
-	
-	// Finish! Fechar a janela te instalação
-	installWindow.close();
 	
 });
