@@ -19,6 +19,7 @@
   ],
   "license": "MIT",
   "dependencies": {
+    "electron-squirrel-startup": "^1.0.0",
     "jquery": "^3.3.1"
   }
 }
