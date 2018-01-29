@@ -4,15 +4,18 @@
   "description": "Meu primeiro programa para windows usando HTML e Javascript",
   "author": "Iago Bruno",
   "repository": "https://github.com/httpiago/first-electron-app",
-  
   "main": "main.js",
   "scripts": {
     "start": "electron ."
   },
   "devDependencies": {
-    "electron": "~1.7.8"
+    "electron": "^1.7.11"
   },
-  
-  "keywords": ["electron", "hello-world", "nodejs", "windows"],
+  "keywords": [
+    "electron",
+    "hello-world",
+    "nodejs",
+    "windows"
+  ],
   "license": "MIT"
 }
