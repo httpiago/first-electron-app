@@ -50,7 +50,7 @@ app.on('ready', function () {
 		require('./install.js').then(function(){
 			
 			// Sucesso! Iniciar o programa
-			return createMainWindow();
+			createMainWindow();
 			
 		}).catch(function(){
 			

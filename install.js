@@ -9,7 +9,7 @@ const path = require('path'),
       url = require('url');
 
 // Criar a janela de instalção
-let installWindow = new BrowserWindow(
+const installWindow = new BrowserWindow(
 {
 	transparent: false,
 	frame: true, // Mostrar (ou não) somente o conteúdo html da janela
@@ -39,7 +39,7 @@ installWindow.on('ready-to-show', function () {
 .on('closed', function () {
 	
 	// Cancelar a instalação
-	installWindow = null;
+	
 	
 });
 	
@@ -59,9 +59,12 @@ module.exports = new Promise(function (resolve, reject) {
 	
 	setTimeout(function(){
 		
-		resolve()
+		resolve();
+		
 		// Fechar a janela de instalação quando abrir o programa
-		.on('ready-to-show', installWindow.close);
+		installWindow.close();
+		
+		clearInterval( timer );
 		
 	}, 1000);
 	

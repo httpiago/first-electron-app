@@ -18,8 +18,8 @@ const queryStrings = (function(paramsArray) {
 })(window.location.search.substr(1).split('&'))
 
 
-var is_install = queryStrings('install'),
-    init_app = queryStrings('start_app');
+var is_install = Boolean( queryStrings('install') ),
+    init_app = Boolean( queryStrings('start_app') );
 
 if ( is_install === true ) {
 	// Mostrar os componentes de instalação
