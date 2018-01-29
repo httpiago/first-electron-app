@@ -39,8 +39,8 @@ function initInstallWindow () {
 	
 	// Criar a janela de instalção
 	let installWindow = new BrowserWindow({
-		transparent: true,
-		frame: false, // Mostrar (ou não) somente o conteúdo html da janela
+		transparent: false,
+		frame: true, // Mostrar (ou não) somente o conteúdo html da janela
 		titleBarStyle: 'hiddenInset',
 		width: 800,
 		height: 600,
