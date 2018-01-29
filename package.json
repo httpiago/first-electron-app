@@ -1,0 +1,12 @@
+{
+  "name": "first-electron-app",
+  "version": "1.0.0",
+  "description": "Meu primeiro programa para windows usando HTML e Javascript",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Iago Bruno",
+  "keywords": ["electron", "hello-world"],
+  "license": "MIT"
+}
