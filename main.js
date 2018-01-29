@@ -1,6 +1,7 @@
-const electron = require('electron');
 // Module to control application life.
-const app = electron.app;
+const electron = require('electron'),
+    app = electron.app;
+
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow;
 
@@ -55,7 +56,7 @@ app.on('ready', function () {
 		require('./install.js').then(function(){
 			
 			// Sucesso! Iniciar o programa
-			createMainWindow();
+			//createMainWindow();
 			
 		}).catch(function(){
 			
