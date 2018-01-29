@@ -31,7 +31,10 @@ let window_url = url.format({
 installWindow.loadURL( window_url );
 
 
-installWindow.on('closed', () => {
+installWindow.on('ready-to-show', function () {
+	
+})
+.on('closed', function () {
 	
 	// Cancelar a instalação
 	installWindow = null;
@@ -49,5 +52,10 @@ exports = new Promise(function (resolve, reject) {
 		
 	}, 1000);
 	
+	
+}).then(function(){
+	
+	// Finish! Fechar a janela te instalação
+	installWindow.close();
 	
 });
