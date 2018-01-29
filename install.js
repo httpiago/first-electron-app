@@ -1,9 +1,8 @@
 // Arquivo de instalação dos componetes necessários e criação do atalho no computador
 
-const electron = require('electron'),
-      app = electron.app;
+const {app, BrowserWindow} = require('electron');
 
-const BrowserWindow = electron.BrowserWindow;
+const current_window = remote.getCurrentWindow();
 
 const path = require('path'),
       url = require('url');
@@ -60,6 +59,9 @@ module.exports = new Promise(function (resolve, reject) {
 			
 			installWindow.webContents.send('install_progress', progress);
 			
+			// Mudar o progresso no icone na bandeja do Windows
+			current_window.setProgressBar(progress, { mode: 'normal' });
+			
 		}, 10);
 		
 		setTimeout(function(){
@@ -73,9 +75,12 @@ module.exports = new Promise(function (resolve, reject) {
 			
 			installWindow.webContents.send('install_complete');
 			
-			// Reiniciar o aplicativo
-			app.relaunch(), app.exit(0);
-			
+			setTimeout(function(){
+				
+				// Reiniciar o aplicativo
+				app.relaunch(), app.exit(0);
+				
+			}, 400);
 		}, 1000);
 		
 	});
