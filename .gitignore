@@ -29,3 +29,4 @@ node_modules
 
 #Distribuições
 *-win32-x64
+dist/
