@@ -1,6 +1,7 @@
-##Programa básico feio com Electron
-- npm install
-- npm start
+# Programa básico feio com [Electron](https://electronjs.org/)
 
-Para empocotar:
-- npm run build
+`npm install && npm start`
+
+Para empocotar em um arquivo executável (.exe):
+
+`- npm run build`
