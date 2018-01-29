@@ -1,11 +1,14 @@
+// Require modules
 const
     electron = require('electron'),
     app = electron.app,
 	broadcast = electron.ipcRenderer,
 	
-	$ = jQuery = require('jquery');
+	$ = jQuery = require('jquery'),
+	storage = require('./storage-module.js');
 
 var window, document, current_window, window_arguments;
+
 
 // Iniciar a interface de instalação
 function initInstall () {
@@ -35,10 +38,41 @@ function initInstall () {
 // Iniciar a interface do programa
 function initInterface () {
 	
+	buildMenuBar();
 	
 	
 }
 
+// Montar a a barra de menus
+function buildMenuBar () {
+	
+	let template = [
+		{
+			label: 'Arquivo',
+			submenu: [
+				{
+					label: 'Novo',
+					click: function () {
+						console.log('Novo arquivo')
+					}
+				},
+				{
+					type: 'separator'
+				},
+				{
+					label: 'Abrir o site',
+					click: function(){ electron.shell.openExternal('https://example.com/') }
+				},
+				{
+					label: 'Versão: ' + app.getVersion(),
+					click: function(){ electron.shell.openExternal('https://example.com/') }
+				}
+			]
+		}
+	];
+	let menu_object = Menu.buildFromTemplate( template );
+	Menu.setApplicationMenu( menu_object )
+}
 
 
 
