@@ -17,5 +17,8 @@
     "nodejs",
     "windows"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "^3.3.1"
+  }
 }
