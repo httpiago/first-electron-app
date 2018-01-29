@@ -5,11 +5,6 @@
 	</head>
 	<body>init | 
 		<script>
-			window.$ = window.jQuery = require('jquery');
-			
-			const electron = require('electron')
-			document.write( 'kkkk: ' + electron.remote.getCurrentWindow()['mode'] );
-			
 			require('./renderer.js')(window, document);
 		</script>
 	</body>

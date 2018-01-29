@@ -17,7 +17,7 @@ function createMainWindow() {
 	mainWindow = new BrowserWindow({width: 800, height: 600})
 	
 	// Passar alguns argumentos 
-	mainWindow.customArguments = {
+	mainWindow.arguments = {
 		'mode': 'default' // Forçar o carregamento do programa
 	};
 	

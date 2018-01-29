@@ -25,7 +25,7 @@ const installWindow = new BrowserWindow(
 	icon: '',
 });
 // Passar alguns argumentos 
-mainWindow.customArguments = {
+installWindow.arguments = {
 	'mode': 'install' // Forçar o carregamento do programa
 };
 

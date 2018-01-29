@@ -7,7 +7,7 @@ function initInterface () {
 	var is_install = windowArugments['mode'] === 'install',
 		init_app = windowArugments['mode'] === 'start_app';
 
-	if ( windowArugments['mode'] === 'install' ) {
+	if ( is_install ) {
 		// Mostrar os componentes de instalação
 		
 		$('body').append('<center><h2>Instalando...</h2><progress value="0" max="100"></progress>');
@@ -18,8 +18,8 @@ function initInterface () {
 			
 		});
 		
-	} if else ( init_app === true ) {
-		// Iniciar a interface do programa
+	} if else ( init_app ) {
+		// Iniciar a interface normal do programa
 		
 	}
 	
@@ -27,12 +27,12 @@ function initInterface () {
 
 
 
-module.exports = function (window, document){
+module.exports = function (window, document) {
 	
 	const window = window,
 	    document = document,
 		curentWindow = electron.remote.getCurrentWindow(),
-		windowArugments = curentWindow.customArguments;
+		windowArugments = curentWindow.arguments;
 	
 	window.$ = window.jQuery = require('jquery');
 	
