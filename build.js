@@ -41,8 +41,8 @@ function winstaller_fn() {
 		outputDirectory: 'dist',
 		exe: exeFileName + '.exe',
 		//loadingGif: '',
-		iconUrl: 'resources/icon.ico',
-		setupIcon: 'resources/icon.ico',
+		iconUrl: 'file://resources/icon.ico',
+		setupIcon: './resources/icon.ico',
 		setupExe: programm_name + '-' + version +'-setup.exe',
 		authors: 'Iago Bruno',
 		noMsi: true
@@ -62,5 +62,5 @@ function winstaller_fn() {
 
 
 
-return package_fn(); // Iniciar todo o processo
+//return package_fn(); // Iniciar todo o processo
 winstaller_fn(); // Iniciar apartir da segunda parte do processo
