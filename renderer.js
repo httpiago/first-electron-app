@@ -1,25 +1,37 @@
 const electron = require('electron'),
-    app = electron.app;
+    app = electron.app,
+	broadcast = electron.ipcRenderer;
+
+const $ = jQuery = require('jquery');
+
+var window, document, current_window, window_arguments;
 
 
 function initInterface () {
 	
-	var is_install = windowArugments['mode'] === 'install',
-		init_app = windowArugments['mode'] === 'start_app';
-
+	var is_install = window_arguments['mode'];
+	
 	if ( is_install ) {
-		// Mostrar os componentes de instalação
 		
-		$('body').append('<center><h2>Instalando...</h2><progress value="0" max="100"></progress>');
+		$('body').append('<center><h2>instalando...</h2><progress id="w" value="0" max="100"></progress>');
 		
-		electron.ipcRenderer.on('install_progress', (event, message) => {
+		var progress_bar = $('#w');
+		
+		broadcast.on('install_progress', (event, data) => {
 			
-			$('progress').val( message );
+			progress_bar.val( data );
+			
+		})
+		.once('install_complete', (event, data) => {
+			
+			broadcast.removeAllListeners('install_progress');
+			
+			progress_bar.val( 100 );
+			
+		})
+		.once('install_error', (event, data) => {
 			
 		});
-		
-	} if else ( init_app ) {
-		// Iniciar a interface normal do programa
 		
 	}
 	
@@ -27,14 +39,14 @@ function initInterface () {
 
 
 
+
 module.exports = function (window, document) {
 	
-	const window = window,
-	    document = document,
-		curentWindow = electron.remote.getCurrentWindow(),
-		windowArugments = curentWindow.arguments;
+	window = window,
+	document = document,
+	current_window = electron.remote.getCurrentWindow(),
+	window_arguments = current_window.arguments;
 	
-	window.$ = window.jQuery = require('jquery');
 	
 	// Iniciar a interface do programa
 	initInterface();
