@@ -14,6 +14,7 @@ let installWindow = new BrowserWindow(
 	transparent: false,
 	frame: true, // Mostrar (ou não) somente o conteúdo html da janela
 	titleBarStyle: 'hiddenInset',
+	autoHideMenuBar: true,
 	width: 600,
 	height: 300,
 	resizable: false,
