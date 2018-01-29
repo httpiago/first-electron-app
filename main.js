@@ -35,6 +35,8 @@ function createMainWindow() {
 		mainWindow = null
 	});
 	
+	return mainWindow;
+	
 }
 
 // This method will be called when Electron has finished
@@ -48,7 +50,7 @@ app.on('ready', function () {
 		require('./install.js').then(function(){
 			
 			// Sucesso! Iniciar o programa
-			createMainWindow();
+			return createMainWindow();
 			
 		}).catch(function(){
 			
