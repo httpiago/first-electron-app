@@ -1,8 +1,8 @@
 {
-  "name": "first-electron-app",
+  "name": "first_electron_app",
   "version": "1.0.0",
   "description": "Meu primeiro programa para windows usando HTML e Javascript",
-  "author": "Iago Bruno",
+  "author": "Iago Bruno <httpiago@gmail.com>",
   "repository": "https://github.com/httpiago/first-electron-app",
   "main": "src/main.js",
   "scripts": {

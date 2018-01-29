@@ -4,35 +4,48 @@
 const packager = require('electron-packager');
 const winstaller = require('electron-winstaller');
 
-var exeFileName = 'app-installer';
 
-packager({
-	name: exeFileName,
-	dir: require('path').join(__dirname),
-	out: '',
-	platform: 'win32',
-	arch: 'x64',
-	overwrite: true
-}, function done_callback (err, appPaths) {
-	
-	if ( err ) return console.log( '\x1b[31m%s\x1b[0m', 'Ocorreu um erro:', err );
-	
-	console.log('\x1b[32m%s\x1b[0m', 'Primeira etapa concluida!', appPaths[0]);
-	
-	/* Segunda etapa */
-	
+var programm_name = 'electron',
+	version = 1.0,
+    exeFileName = 'app-installer',
+    platform = 'win32',
+	arch = 'x64';
+
+
+function package_fn() {
+
+	packager({
+		dir: require('path').join(__dirname),
+		out: '',
+		platform,
+		arch,
+		overwrite: true
+	}, function done_callback (err, appPaths) {
+		
+		if ( err ) return console.log( '\x1b[31m%s\x1b[0m', 'Ocorreu um erro:', err );
+		
+		const path = appPaths[0].replace(/\\/g, '/');
+		console.log('\x1b[32m%s\x1b[0m', 'Primeira etapa concluida!', path);
+		
+		/* Segunda etapa */
+		winstaller_fn();
+	})
+}
+
+function winstaller_fn() {
 	console.log('Iniciando segunda etapa...');
 	
 	winstaller.createWindowsInstaller(
 	{
-		appDirectory: require('path').join(appPaths[0]),
+		appDirectory: 'first_electron_app-' + platform + '-' + arch,
 		outputDirectory: 'dist',
 		exe: exeFileName + '.exe',
-		loadingGif: '',
-		iconUrl: 'src/icon.ico',
-		setupIcon: 'src/icon.ico',
-		setupExe: 'Setup-install',
+		//loadingGif: '',
+		//iconUrl: 'resources/icon.ico',
+		//setupIcon: 'resources/icon.ico',
+		setupExe: programm_name + '-' + version +'-setup',
 		authors: 'Iago Bruno',
+		noMsi: true
 	}).then(function(){
 		
 		// COMPLETO!
@@ -44,5 +57,10 @@ packager({
 		console.log('\x1b[31m%s\x1b[0m', 'Ocorreu um erro na segunda etapa:', e.message);
 		
 	});
-})
-return;
+}
+
+
+
+
+return package_fn(); // Iniciar todo o processo
+winstaller_fn(); // Iniciar apartir da segunda parte do processo
