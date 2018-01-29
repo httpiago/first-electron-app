@@ -25,7 +25,7 @@ packager({
 	
 	winstaller.createWindowsInstaller(
 	{
-		appDirectory: appPaths[0],
+		appDirectory: require('path').join(appPaths[0]),
 		outputDirectory: 'dist',
 		exe: exeFileName + '.exe',
 		loadingGif: '',
