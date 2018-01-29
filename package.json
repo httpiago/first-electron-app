@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Meu primeiro programa para windows usando HTML e Javascript",
   "author": "Iago Bruno",
+  "repository": "https://github.com/httpiago/first-electron-app",
   
   "main": "main.js",
   "scripts": {
