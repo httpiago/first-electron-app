@@ -35,12 +35,12 @@ function createMainWindow() {
 	});
 }
 
-function installWindow () {
+function initInstallWindow () {
 	
 	// Criar a janela de instalção
 	let installWindow = new BrowserWindow({
-		transparent: false,
-		frame: true, // Mostrar (ou não) somente o conteúdo html da janela
+		transparent: true,
+		frame: false, // Mostrar (ou não) somente o conteúdo html da janela
 		titleBarStyle: 'hiddenInset',
 		width: 800,
 		height: 600,
@@ -75,7 +75,7 @@ app.on('ready', function () {
 	if ( true ) {
 		
 		// Iniciar a instalação
-		installWindow();
+		initInstallWindow();
 		
 	} else {
 		
@@ -89,11 +89,5 @@ app.on('ready', function () {
 app.on('window-all-closed', function () {
   
 	if (process.platform !== 'darwin') app.quit();
-  
-});
-
-app.on('activate', function () {
-  
-	if (mainWindow === null) createWindow();
   
 });
