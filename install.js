@@ -51,26 +51,32 @@ installWindow.on('ready-to-show', function () {
 // Retornar uma promessa que será chamada quando a instalação estiver concluída
 module.exports = new Promise(function (resolve, reject) {
 	
-	// Criar uma instalação falsa de 1 segundo
-	var progress = 0,
-	timer = setInterval( function () {
+	installWindow.webContents.on('did-finish-load', () => {
+		// Criar uma instalação falsa de 1 segundo
+		var progress = 0,
+		timer = setInterval( function () {
+			
+			progress += 1;
+			
+			installWindow.webContents.send('install_progress', progress);
+			
+		}, 10);
 		
-		progress += 1;
+		setTimeout(function(){
+			
+			resolve();
+			
+			installWindow.webContents.send('install_complete');
+			
+			// Fechar a janela de instalação quando abrir o programa
+			//installWindow.close();
+			
+			clearInterval( timer );
+			
+		}, 1000);
 		
-		installWindow.webContents.send( 'install_progress', progress );
-		
-	}, 10);
+	});
 	
-	setTimeout(function(){
-		
-		resolve();
-		
-		// Fechar a janela de instalação quando abrir o programa
-		//installWindow.close();
-		
-		clearInterval( timer );
-		
-	}, 1000);
-	
-	
-});
+})
+.then(() => { installWindow.webContents.send('install_complete'); })
+.catch(() => { installWindow.webContents.send('install_error'); });
