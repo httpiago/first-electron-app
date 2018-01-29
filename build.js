@@ -7,7 +7,7 @@ const winstaller = require('electron-winstaller');
 
 var programm_name = 'electron',
 	version = 1.0,
-    exeFileName = 'app-installer',
+    exeFileName = 'first_electron_app',
     platform = 'win32',
 	arch = 'x64';
 
@@ -41,9 +41,9 @@ function winstaller_fn() {
 		outputDirectory: 'dist',
 		exe: exeFileName + '.exe',
 		//loadingGif: '',
-		//iconUrl: 'resources/icon.ico',
-		//setupIcon: 'resources/icon.ico',
-		setupExe: programm_name + '-' + version +'-setup',
+		iconUrl: 'resources/icon.ico',
+		setupIcon: 'resources/icon.ico',
+		setupExe: programm_name + '-' + version +'-setup.exe',
 		authors: 'Iago Bruno',
 		noMsi: true
 	}).then(function(){
