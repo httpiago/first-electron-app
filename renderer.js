@@ -1,8 +1,7 @@
 // Require modules
 const
-    electron = require('electron'),
-    app = electron.app,
-	broadcast = electron.ipcRenderer,
+	{app, Menu, ipcRenderer, remote, shell} = require('electron'),
+	broadcast = ipcRenderer,
 	
 	$ = jQuery = require('jquery'),
 	storage = require('./storage-module.js');
@@ -13,6 +12,7 @@ var window, document, current_window, window_arguments;
 // Iniciar a interface de instalação
 function initInstall () {
 	
+	// Mostrar a tela
 	$('body').append('<center><h2>instalando...</h2><progress id="w" value="0" max="100"></progress>');
 	
 	var progress_bar = $('#w');
@@ -40,11 +40,14 @@ function initInterface () {
 	
 	buildMenuBar();
 	
+	$('body').prepend('OK!');
 	
 }
 
 // Montar a a barra de menus
 function buildMenuBar () {
+	
+	const {Menu, MenuItem} = remote;
 	
 	let template = [
 		{
@@ -57,21 +60,32 @@ function buildMenuBar () {
 					}
 				},
 				{
+					role: 'reload'
+				},
+				{
+					role: 'toggledevtools'
+				},
+				{
 					type: 'separator'
 				},
 				{
 					label: 'Abrir o site',
-					click: function(){ electron.shell.openExternal('https://example.com/') }
+					click () { shell.openExternal('https://example.com/') }
 				},
 				{
-					label: 'Versão: ' + app.getVersion(),
-					click: function(){ electron.shell.openExternal('https://example.com/') }
+					label: 'Versão: ' + remote.app.getVersion(),
+					enabled: false
+				},
+				{
+					role: 'close'
 				}
 			]
 		}
 	];
+	
 	let menu_object = Menu.buildFromTemplate( template );
-	Menu.setApplicationMenu( menu_object )
+	Menu.setApplicationMenu( menu_object );
+	
 }
 
 
@@ -81,7 +95,7 @@ module.exports = function (window, document) {
 	
 	window = window,
 	document = document,
-	current_window = electron.remote.getCurrentWindow(),
+	current_window = remote.getCurrentWindow(),
 	window_arguments = current_window.arguments;
 	
 	let mode = window_arguments['mode'];
