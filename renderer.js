@@ -87,6 +87,7 @@ function buildMenuBar () {
 	Menu.setApplicationMenu( menu_object );
 	
 	// Mostrar a barra de menu com os novos itens
+	current_window.setAutoHideMenuBar(false),
 	current_window.setMenuBarVisibility(true);
 }
 
