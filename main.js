@@ -8,6 +8,8 @@ const BrowserWindow = electron.BrowserWindow;
 const path = require('path');
 const url = require('url');
 
+const storage = require('./storage-module.js');
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 var mainWindow;
@@ -50,7 +52,7 @@ function createMainWindow() {
 // Some APIs can only be used after this event occurs.
 app.on('ready', function () {
 	
-	if ( true ) {
+	if ( Boolean(storage.get('installed')) !== true ) {
 		
 		// Iniciar o módulo de instalação
 		require('./install.js').then(function(){

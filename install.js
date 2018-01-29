@@ -64,14 +64,17 @@ module.exports = new Promise(function (resolve, reject) {
 		
 		setTimeout(function(){
 			
-			resolve();
+			// resolve();
+			
+			clearInterval( timer );
+			
+			// Salvar alteração
+			require('./storage-module.js').set('installed', true);
 			
 			installWindow.webContents.send('install_complete');
 			
-			// Fechar a janela de instalação quando abrir o programa
-			//installWindow.close();
-			
-			clearInterval( timer );
+			// Reiniciar o aplicativo
+			app.relaunch(), app.exit(0);
 			
 		}, 1000);
 		
