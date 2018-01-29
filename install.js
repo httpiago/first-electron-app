@@ -22,7 +22,7 @@ const installWindow = new BrowserWindow(
 	closable: true,
 	alwaysOnTop: false,
 	title: app.getName(),
-	icon: '',
+	icon: 'icon.ico',
 });
 // Passar alguns argumentos 
 installWindow.arguments = {

@@ -13,7 +13,21 @@ var mainWindow;
 function createMainWindow() {
 	
 	// Create the browser window.
-	mainWindow = new BrowserWindow({width: 800, height: 600})
+	mainWindow = new BrowserWindow(
+	{
+		transparent: false,
+		frame: true, // Mostrar (ou não) somente o conteúdo html da janela
+		titleBarStyle: 'hiddenInset',
+		autoHideMenuBar: true,
+		width: 800,
+		height: 600,
+		resizable: true,
+		maximizable: true,
+		closable: true,
+		alwaysOnTop: false,
+		title: app.getName(),
+		icon: 'icon.ico',
+	})
 	
 	// Passar alguns argumentos 
 	mainWindow.arguments = {
