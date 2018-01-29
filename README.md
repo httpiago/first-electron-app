@@ -1,4 +1,4 @@
-# Programa básico feio com [Electron](https://electronjs.org/)
+# Programa básico feito com [Electron](https://electronjs.org/)
 
 `npm install && npm start`
 
