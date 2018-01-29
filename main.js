@@ -15,10 +15,15 @@ function createMainWindow() {
 	
 	// Create the browser window.
 	mainWindow = new BrowserWindow({width: 800, height: 600})
-
+	
+	// Passar alguns argumentos 
+	mainWindow.customArguments = {
+		'mode': 'default' // Forçar o carregamento do programa
+	};
+	
 	// and load the index.html of the app.
 	let window_url = url.format({
-		pathname: path.join(__dirname, 'index.html?start_app=true'),
+		pathname: path.join(__dirname, 'index.html'),
 		protocol: 'file:',
 		slashes: true
 	});

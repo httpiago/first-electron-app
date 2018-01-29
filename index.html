@@ -3,26 +3,14 @@
 	<head>
 		<meta charset="UTF-8">
 	</head>
-	<body>
+	<body>init | 
 		<script>
 			window.$ = window.jQuery = require('jquery');
-		
-		const queryStrings = (function(paramsArray) {
-	let params = {};
-	
-	for (let i = 0; i < paramsArray.length; ++i) {
-		let param = paramsArray[i].split('=', 2);
-
-		if (param.length !== 2)
-			continue;
-
-		params[param[0]] = decodeURIComponent(param[1].replace(/\+/g, " "));
-	}
-
-	return params;
-})(window.location.search.substr(1).split('&'))
-			$('body').append( 'kkkkkkkkkk' )
-			require('./renderer.js');
+			
+			const electron = require('electron')
+			document.write( 'kkkk: ' + electron.remote.getCurrentWindow()['mode'] );
+			
+			require('./renderer.js')(window, document);
 		</script>
 	</body>
 </html>

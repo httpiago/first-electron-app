@@ -24,9 +24,13 @@ const installWindow = new BrowserWindow(
 	title: app.getName(),
 	icon: '',
 });
+// Passar alguns argumentos 
+mainWindow.customArguments = {
+	'mode': 'install' // Forçar o carregamento do programa
+};
 
 let window_url = url.format({
-	pathname: path.join(__dirname, 'index.html?install=true'),
+	pathname: path.join(__dirname, 'index.html'),
 	protocol: 'file:',
 	slashes: true
 });
@@ -62,7 +66,7 @@ module.exports = new Promise(function (resolve, reject) {
 		resolve();
 		
 		// Fechar a janela de instalação quando abrir o programa
-		installWindow.close();
+		//installWindow.close();
 		
 		clearInterval( timer );
 		
