@@ -3,6 +3,7 @@
 
 const packager = require('electron-packager');
 const winstaller = require('electron-winstaller');
+const path = require('path');
 
 
 var programm_name = 'electron',
@@ -35,21 +36,23 @@ function package_fn() {
 function winstaller_fn() {
 	console.log('Iniciando segunda etapa...');
 	
+	var rootPath = path.join('/');
+	
 	winstaller.createWindowsInstaller(
 	{
 		appDirectory: 'first_electron_app-' + platform + '-' + arch,
 		outputDirectory: 'dist',
 		exe: exeFileName + '.exe',
 		//loadingGif: '',
-		iconUrl: 'file://resources/icon.ico',
-		setupIcon: './resources/icon.ico',
+		//iconUrl: path.join(rootPath, 'src', 'icon.ico'),
+		setupIcon: path.join(rootPath, 'src', 'icon.ico'),
 		setupExe: programm_name + '-' + version +'-setup.exe',
 		authors: 'Iago Bruno',
 		noMsi: true
 	}).then(function(){
 		
 		// COMPLETO!
-		console.log('\x1b[32m%s\x1b[0m', 'Concluído com sucesso!', 'O arquivo final está em: dist/Setup.exe');
+		console.log('\x1b[32m%s\x1b[0m', 'Concluído com sucesso!', 'O arquivo final está em: dist');
 		
 	}, function (e) {
 		
