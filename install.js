@@ -43,7 +43,7 @@ installWindow.on('ready-to-show', function () {
 	
 	
 // Retornar uma promessa que será chamada quando a instalação estiver concluída
-exports = new Promise(function (resolve, reject) {
+module.exports = new Promise(function (resolve, reject) {
 	
 	
 	setTimeout(function(){
