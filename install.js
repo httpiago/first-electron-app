@@ -22,6 +22,7 @@ let installWindow = new BrowserWindow(
 	closable: true,
 	alwaysOnTop: false,
 	title: app.getName(),
+	icon: '',
 });
 
 let window_url = url.format({
