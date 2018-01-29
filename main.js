@@ -42,7 +42,6 @@ function createMainWindow() {
 // Some APIs can only be used after this event occurs.
 app.on('ready', function () {
 	
-	
 	if ( true ) {
 		
 		// Iniciar o módulo de instalação
@@ -57,7 +56,7 @@ app.on('ready', function () {
 		
 	} else {
 		
-		// Já instalado iniciar o aplicativo
+		// Já instalado, iniciar o aplicativo
 		createMainWindow();
 		
 	}
