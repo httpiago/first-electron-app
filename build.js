@@ -5,13 +5,18 @@ const packager = require('electron-packager');
 const winstaller = require('electron-winstaller');
 const path = require('path');
 
+const npm_package = require('./package.json');
+
+
+	
 
 var programm_name = 'electron',
-	version = 1.0,
+	version = 1.1,
     exeFileName = 'first_electron_app',
     platform = 'win32',
 	arch = 'x64';
-
+	
+var package_path = null;
 
 function package_fn() {
 
@@ -25,8 +30,8 @@ function package_fn() {
 		
 		if ( err ) return console.log( '\x1b[31m%s\x1b[0m', 'Ocorreu um erro:', err );
 		
-		const path = appPaths[0].replace(/\\/g, '/');
-		console.log('\x1b[32m%s\x1b[0m', 'Primeira etapa concluida!', path);
+		package_path = appPaths[0];
+		console.log('\x1b[32m%s\x1b[0m', 'Primeira etapa concluida!', package_path);
 		
 		/* Segunda etapa */
 		winstaller_fn();
@@ -36,18 +41,18 @@ function package_fn() {
 function winstaller_fn() {
 	console.log('Iniciando segunda etapa...');
 	
-	var rootPath = path.join('/');
+	var icon_url = path.join(__dirname, 'src', 'icon.ico');
 	
 	winstaller.createWindowsInstaller(
 	{
-		appDirectory: 'first_electron_app-' + platform + '-' + arch,
-		outputDirectory: 'dist',
-		exe: exeFileName + '.exe',
-		//loadingGif: '',
-		//iconUrl: path.join(rootPath, 'src', 'icon.ico'),
-		setupIcon: path.join(rootPath, 'src', 'icon.ico'),
-		setupExe: programm_name + '-' + version +'-setup.exe',
-		authors: 'Iago Bruno',
+		appDirectory: npm_package.name + '-' + platform + '-' + arch, // Pasta que foi criada no processo anterior
+		exe: npm_package.name + '.exe', // Nome do arquivo criado no processo anteriro na pasta "appDirectory"
+		outputDirectory: 'dist', // Pasta onde será colocado o arquvio exe final
+		//loadingGif: '', // Animação que será exibida durante a instalação
+		iconUrl: icon_url, // Ícone do aplicativo em todos os lugares do windows
+		setupIcon: icon_url, // Ícone do arquivo setup
+		setupExe: npm_package.name + '-v' + npm_package.version +'-setup.exe', // Nome do arquivo final exemplo: "electron-v2.0-setup.exe"
+		authors: npm_package.author,
 		noMsi: true
 	}).then(function(){
 		
@@ -63,7 +68,5 @@ function winstaller_fn() {
 }
 
 
-
-
-//return package_fn(); // Iniciar todo o processo
+return package_fn(); // Iniciar todo o processo
 winstaller_fn(); // Iniciar apartir da segunda parte do processo
