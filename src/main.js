@@ -33,7 +33,7 @@ function createMainWindow() {
 		closable: true,
 		alwaysOnTop: false,
 		title: app.getName(),
-		icon: 'icon.ico',
+		icon: 'src/icon.ico',
 	})
 	
 	// Passar alguns argumentos 
