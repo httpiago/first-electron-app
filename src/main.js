@@ -24,7 +24,7 @@ function createMainWindow() {
 	{
 		transparent: false,
 		frame: true, // Mostrar (ou não) somente o conteúdo html da janela
-		titleBarStyle: 'hiddenInset',
+		titleBarStyle: 'default', // 'hiddenInset'
 		autoHideMenuBar: true,
 		width: 800,
 		height: 600,
